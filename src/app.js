@@ -1,11 +1,14 @@
 const express = require("express");
-const cors = require("cors");
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
-app.use(cors());
+app.use(express.json());
+app.use("/api/test", require("./routes/protectedRoutes"));
+app.use("/api/sweets", require("./routes/sweetRoutes"));
+
+
+
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
